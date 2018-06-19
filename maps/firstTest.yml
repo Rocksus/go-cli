@@ -1,0 +1,81 @@
+--- !ruby/object:GeneratedMap
+n: 16
+pos:
+- 3
+- 8
+userX: 3
+userY: 8
+driversCoor:
+- - 12
+  - 15
+- - 8
+  - 7
+- - 14
+  - 11
+- - 5
+  - 15
+- &1
+  - 2
+  - 8
+drivers:
+  Subarjo: !ruby/object:Driver
+    driverName: Subarjo
+    driveCount: 1
+    rating: 5.0
+  Suparmin: !ruby/object:Driver
+    driverName: Suparmin
+    driveCount: 2
+    rating: 4.5
+  Armin: !ruby/object:Driver
+    driverName: Armin
+    driveCount: 1
+    rating: 3.0
+    x: 2
+    y: 8
+  Fahri: !ruby/object:Driver
+    driverName: Fahri
+    driveCount: 4
+    rating: 3.75
+    x: 8
+    y: 7
+  Tono: !ruby/object:Driver
+    driverName: Tono
+    driveCount: 3
+    rating: 2.0
+  Alexandra: !ruby/object:Driver
+    driverName: Alexandra
+    driveCount: 1
+    rating: 3.67
+  Burhainin: !ruby/object:Driver
+    driverName: Burhainin
+    driveCount: 2
+    rating: 4.0
+    x: 14
+    y: 11
+  Kael: !ruby/object:Driver
+    driverName: Kael
+    driveCount: 4
+    rating: 3.75
+  Pakjo: !ruby/object:Driver
+    driverName: Pakjo
+    driveCount: 3
+    rating: 4.67
+    x: 12
+    y: 15
+  Nicky: !ruby/object:Driver
+    driverName: Nicky
+    driveCount: 2
+    rating: 5.0
+  Hifdzi: !ruby/object:Driver
+    driverName: Hifdzi
+    driveCount: 1
+    rating: 4.0
+    x: 5
+    y: 15
+selected:
+- Pakjo
+- Fahri
+- Burhainin
+- Hifdzi
+- Armin
+driverPos: *1
