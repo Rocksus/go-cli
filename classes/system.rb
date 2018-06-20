@@ -3,6 +3,7 @@ require_relative 'driver'
 require_relative 'user'
 require_relative 'map'
 require_relative 'genMap'
+require_relative 'config'
 
 class System
 	def initialize(*args)
@@ -10,8 +11,9 @@ class System
 			@n = args[0]
 			@x = args[1]
 			@y = args[2]
-			@driversList = YAML.load_file("../drivers/drivernames.yml")
-			@selected = @driversList.keys.sample(5)
+			@cfg = YAML.load_file("../config.yml") #PLEASE ADD ERROR HANDLING
+			@driversList = YAML.load_file("../drivers/drivernames.yml") #PLEASE ADD ERROR HANDLING
+			@selected = @driversList.keys.sample(@cfg.drivers)
 			@drivers = {}
 			@driversCoor = []
 			@selected.each do |driver|
@@ -25,7 +27,7 @@ class System
 				@driversCoor.push(@driverPos)
 			end
 		elsif(args.length == 1) #if there is an arg
-			@mapFile = YAML.load_file("../maps/"+args[0])
+			@mapFile = YAML.load_file("../maps/"+args[0]) #PLEASE ADD ERROR HANDLING
 			@n = @mapFile.n
 			@x = @mapFile.userX
 			@y = @mapFile.userY
@@ -35,8 +37,8 @@ class System
 			@n=20
 			@x=1+rand(20)
 			@y=1+rand(20)
-			@driversList = YAML.load_file("../drivers/drivernames.yml")
-			@selected = @drivers.keys.sample(5)
+			@driversList = YAML.load_file("../drivers/drivernames.yml") #PLEASE ADD ERROR HANDLING
+			@selected = @drivers.keys.sample(@cfg.drivers)
 			@driversCoor = []
 			@drivers = {}
 			@selected.each do |driver|
@@ -89,36 +91,29 @@ class System
 				puts "Your current location: (#{@x}, #{@y})"
 				puts "Enter destination (x,y): "
 				@dest = gets.chomp.tr('()','').split(",").collect! { |i| i.to_i }
-				@routeCoor = @map.showRoute([@x, @y], @dest)
-				@changingX = false
-				@changingY = false
-				@changeDetect = false
-				@lastX = @routeCoor[0][0]
-				@lastY = @routerCoor[0][1]
-				@newRoute = []
-				@newRoute.push([@lastX, @lastY])
-				@routeCoor.each do |x, y|
-					if (@lastX!=x and @changingX == false)
-						@changingX = true
-						@changingY = false
-						@changeDetect = true
-					end
-					if (@lastY!=y and @changingY == false)
-						@changingY = true
-						@changingX = false
-						@changeDetect = true
-					end
-					if @changeDetect == true
-						# newRoute.push("Move to ("+lastX.to_s +","+lastY.to_s+")")
-						@newRoute.push([@lastX, @lastY])
-						@changeDetect = false
-					end
-					@lastX = x
-					@lastY = y
-				end
-				@newRoute.push([@routeCoor[@routeCoor.length-1][0], @routeCoor[@routeCoor.length-1][1]])
+				Gem.win_platform? ? (system "cls") : (system "clear")
+				puts "===We have found you a driver!====\n\n"
+				@newRoute = @map.showRoute([@x, @y], @dest)
+				puts("\nRoute:")
 				puts @newRoute
-				system "pause"
+				@shortest = -1
+				@selected.each do |driver|
+					if( ((@x - @drivers[driver].x).abs + (@y - @drivers[driver].y).abs) < @shortest or @shortest == -1)
+						@shortest = ((@x - @drivers[driver].x).abs + (@y - @drivers[driver].y).abs)
+						@closestDriver = @drivers[driver]
+					end
+
+				end
+				puts "\nName: #{@closestDriver.driverName}"
+				puts "Position: (#{@closestDriver.x},#{@closestDriver.y})"
+				puts "Arrival estimation: #{@shortest} minutes"
+				puts "Fare: Rp. #{(@shortest * @cfg.rate).to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1.').reverse}"
+
+				puts "\nAccept the ride? (y/n): "
+				inpt = gets.chomp
+				if(inpt == "y") #ERROR HANDLING FOR not y/n
+					#create new history
+				end
 			when 3
 				@user.showHistory
 			when 4

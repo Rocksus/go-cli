@@ -1,0 +1,6 @@
+--- !ruby/object:Config
+rate: 600
+drivers: 5
+rush_hour_start: '07:00:00'
+rush_hour_end: '09:00:00'
+finishedTimeDiff: 5.0

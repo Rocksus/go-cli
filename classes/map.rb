@@ -90,7 +90,6 @@ class Map
 				end
 			end
 		end
-		Gem.win_platform? ? (system "cls") : (system "clear")
 		puts "Showing Route..."
 		(0...@height).each do |i|
 			(0...@width).each do |j|
@@ -123,6 +122,55 @@ class Map
 			print "\n"
 		end
 		system "pause"
-		@route
+		@routeList = []
+		@routeList.push("Start at ("+@from[0].to_s+","+@from[1].to_s+")")
+		if(@from[0]<@to[0])
+			@routeList.push("Move to ("+(@from[0]+(@from[0]-@to[0]).abs).to_s+","+@from[1].to_s+")")
+			if(@from[1]<@to[1])
+				@routeList.push("Turn right")
+				@routeList.push("Move to ("+(@from[0]+(@from[0]-@to[0]).abs).to_s+","+(@from[1]+(@from[1]-@to[1]).abs).to_s+")")
+			elsif(@from[1]>@to[1])
+				@routeList.push("Turn left")
+				@routeList.push("Move to ("+(@from[0]+(@from[0]-@to[0]).abs).to_s+","+(@from[1]-(@from[1]-@to[1]).abs).to_s+")")
+			end
+		elsif(@from[0]>@to[0])
+			@routeList.push("Move to ("+(@from[0]-(@from[0]-@to[0]).abs).to_s+","+@from[1].to_s+")")
+			if(@from[1]<@to[1])
+				@routeList.push("Turn left")
+				@routeList.push("Move to ("+(@from[0]-(@from[0]-@to[0]).abs).to_s+","+(@from[1]+(@from[1]-@to[1]).abs).to_s+")")
+			elsif(@from[1]>@to[1])
+				@routeList.push("Turn right")
+				@routeList.push("Move to ("+(@from[0]-(@from[0]-@to[0]).abs).to_s+","+(@from[1]-(@from[1]-@to[1]).abs).to_s+")")
+			end
+		else
+			if(@from[1]<@to[1])
+				@routeList.push("Move to ("+@from[0]+","+(@from[1]+(@from[1]-@to[1]).abs).to_s+")")
+			elsif(@from[1]>@to[1])
+				@routeList.push("Move to ("+@from[0]+","+(@from[1]-(@from[1]-@to[1]).abs).to_s+")")
+			end
+		end
+		@routeList.push("Finish at ("+@to[0].to_s+","+@to[1].to_s+")")
+		@routeList
 	end
 end
+
+
+# map = Map.new(20, 20, [5, 6], [[2,3], [6,2], [3,9], [16,3], [17,17]])
+
+# map.showRoute([8,7], [8,2])
+# map.showRoute([8,7], [16,2])
+# map.showRoute([8,7], [16,7])
+# map.showRoute([8,7], [16,16])
+# map.showRoute([8,7], [8,16])
+# map.showRoute([8,7], [4,16])
+# map.showRoute([8,7], [4,7])
+# map.showRoute([8,7], [4,2])
+
+# map.showRoute([8,2],[8,7])
+# map.showRoute([16,2],[8,7])
+# map.showRoute([16,7],[8,7])
+# map.showRoute([16,16],[8,7])
+# map.showRoute([8,16],[8,7])
+# map.showRoute([4,16],[8,7])
+# map.showRoute([4,7],[8,7])
+# map.showRoute([4,2],[8,7])
