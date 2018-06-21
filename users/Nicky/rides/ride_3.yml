@@ -1,20 +1,20 @@
 --- !ruby/object:Ride
 date: '2018-06-21'
-start: '18:45:55'
-finish: '19:10:55'
+start: '21:49:03'
+finish: '22:01:03'
 pos:
-- '17'
-- '18'
+- '6'
+- '15'
 dest:
+- '8'
 - '12'
-- '1'
-fare: 13200
-driverName: Fahri
+fare: 3000
+driverName: Alexandra
 uToD: 4
 dToU: 5
 routes:
-- Start at (17,18)
-- Move to (12,18)
-- Turn right
-- Move to (12,1)
-- Finish at (12,1)
+- Start at (6,15)
+- Move to (8,15)
+- Turn left
+- Move to (8,12)
+- Finish at (8,12)

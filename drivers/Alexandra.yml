@@ -1,4 +1,6 @@
 --- !ruby/object:Driver
 driverName: Alexandra
 driveCount: 1
-rating: 3.67
+rating: 3.5
+x: 1
+y: 17

@@ -1,20 +1,20 @@
 --- !ruby/object:Ride
 date: '2018-06-21'
-start: '18:45:28'
-finish: '19:08:28'
+start: '21:42:24'
+finish: '22:11:24'
 pos:
+- '5'
 - '20'
-- '19'
 dest:
-- '19'
-- '2'
-fare: 10800
-driverName: Pakjo
+- '3'
+- '5'
+fare: 10200
+driverName: Suparmin
 uToD: 5
 dToU: 5
 routes:
-- Start at (20,19)
-- Move to (19,19)
+- Start at (5,20)
+- Move to (3,20)
 - Turn right
-- Move to (19,2)
-- Finish at (19,2)
+- Move to (3,5)
+- Finish at (3,5)

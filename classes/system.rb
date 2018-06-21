@@ -95,7 +95,6 @@ class System
 			puts "Invalid username! Minimal 2 characters long!"
 		end
 		@user = User.new(@uName, @x, @y)
-		
 		@map = Map.new(@n, @n, [@x, @y], @driversCoor)
 		self.mainMenu
 	end
@@ -142,10 +141,12 @@ class System
 				end
 				puts "===We have found you a driver!====\n\n"
 				@shortest = -1
+				@bestRating = 0.0
 				@selected.each do |driver|
-					if( ((@x - @drivers[driver].x).abs + (@y - @drivers[driver].y).abs) < @shortest or @shortest == -1)
+					if( ( (@x - @drivers[driver].x).abs + (@y - @drivers[driver].y).abs) < @shortest or @shortest == -1 or (@drivers[driver].rating > @bestRating and ( (@x - @drivers[driver].x).abs + (@y - @drivers[driver].y).abs ) == @shortest))
 						@shortest = ((@x - @drivers[driver].x).abs + (@y - @drivers[driver].y).abs)
 						@closestDriver = @drivers[driver]
+						@bestRating = @drivers[driver].rating
 					end
 				end
 				@newRoute = @map.showRoute([@x, @y], @dest, [@closestDriver.x, @closestDriver.y])
