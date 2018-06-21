@@ -97,8 +97,24 @@ The rest involved with a lot of system clears and just texts with options.
 ##### >> Structural Design
 Go-Cli.rb itself only accepts the initial arguments, then passes it down the System class. Inside the system class, it generates a map(or loads one), sets the user position, and taking drivers according to the config class (config class contains fare rate, rush hour (unimplemented), max drivers, and so on). The User class has a 2 separate classes inside it, the History class and the Rides class. History class was created to store the User's core data (name, password, debt, etc), while the Rides class stores each individual rides the user has. The way I saved the users class was inside the users folder. Which inside of that folder, I created individual folders for each user. History and rides are kept separate for avoiding the parsing error, and each rides were also separated for avoiding the same problem (It has scarred me with long hours staring blankly at google).
 
-For the drivers, I only store their names, ridecount, and rating. Each driver were saved individually to avoid the parser error. To generate the drivers, I chose to create a new ruby script to convert the names from drivernames.bin into a separate driver data.
+For the drivers, I only store their names, ridecount, and rating. Each driver were saved individually to avoid the parser error. To generate the drivers, I chose to create createDrivers.rb, a new ruby script to convert the names from drivernames.bin into a separate driver data.
 
-As for the map, I chose to show the routes with the bullet alt code •, to make the routes easier to draw. The user position and driver position are ensured to be always different (with an endless loop until they are unique to each other, or if they were specified in the initial start of the program).
+As for the map, I chose to show the routes with the bullet alt code •, to make the routes easier to draw. The user position and driver position are ensured to be always different (with an endless loop until they are unique to each other, or if they were specified in the initial start of the program). I also created a map generator called generateMap, this one makes the map from the input that the program asks, and parses it into a YAML file format.
 
-The whole program is looping inside the mainMenu method from System, and exits only when the user chooses the exit option.
+The whole program is looping inside the mainMenu method from System, and exits only when the user chooses the exit option. Some of the variables inside the System follows the parameters from Config. To edit the config, I created the generateConfig.rb that would also ask you the parameters and sets the config as you input them.
+
+### Classes
+- Config
+    >Handles the config parameters
+- Driver
+    >To handle each driver, it has a driverName, driveCount, and rating when stored in a save file. But also has x and y which are always generated when run.
+- History
+    >Used to handle the users data; profile name, debt, ride count, and password. It is created to make the loadfile easier to read.
+- Rides
+    >Used to manage ride trip history individually. Has a date, timestamp (start and finish), from, to, fare, the ratings both the driver and user gave each other, and also the routes in text form.
+- User
+    >The user class are for the user, it loads the history and rides (if there are any) into its variables, and interacts with the System. All updates are handled by the User class, but executed from the System.
+- Map
+    >Handles the map. It's basically just a drawer class and makes the map from nested loops and nested ifs. A lot of nested ifs.
+- System
+    >The main system of the program. Manages all interaction and executes the save and edits the data inside. Imports data from the config to adjust the System accordingly.
