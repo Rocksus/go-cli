@@ -12,6 +12,8 @@ class Map
 	def show
 		Gem.win_platform? ? (system "cls") : (system "clear")
 		puts "Displaying map..."
+		puts "Map size: #{@width}x#{@height}\n"
+		print "\n"
 		(0...@height).each do |i|
 			(0...@width).each do |j|
 				@whitespace = true
@@ -121,7 +123,6 @@ class Map
 			end
 			print "\n"
 		end
-		system "pause"
 		@routeList = []
 		@routeList.push("Start at ("+@from[0].to_s+","+@from[1].to_s+")")
 		if(@from[0]<@to[0])
@@ -144,9 +145,9 @@ class Map
 			end
 		else
 			if(@from[1]<@to[1])
-				@routeList.push("Move to ("+@from[0]+","+(@from[1]+(@from[1]-@to[1]).abs).to_s+")")
+				@routeList.push("Move to ("+@from[0].to_s+","+(@from[1]+(@from[1]-@to[1]).abs).to_s+")")
 			elsif(@from[1]>@to[1])
-				@routeList.push("Move to ("+@from[0]+","+(@from[1]-(@from[1]-@to[1]).abs).to_s+")")
+				@routeList.push("Move to ("+@from[0].to_s+","+(@from[1]-(@from[1]-@to[1]).abs).to_s+")")
 			end
 		end
 		@routeList.push("Finish at ("+@to[0].to_s+","+@to[1].to_s+")")

@@ -1,6 +1,4 @@
-require 'YAML'
-require_relative 'classes\system'
-
+require_relative 'classes/system'
 
 inpt = ARGV
 
@@ -35,5 +33,4 @@ elsif (inpt.length == 0)
 	puts "Generating you a random 20x20 map..."
 	admin = System.new
 end
-system "pause"
 

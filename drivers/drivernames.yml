@@ -1,45 +1,31 @@
 ---
-Subarjo: !ruby/object:Driver
-  driverName: Subarjo
-  driveCount: 1
-  rating: 5.0
-Suparmin: !ruby/object:Driver
-  driverName: Suparmin
-  driveCount: 2
-  rating: 4.5
-Armin: !ruby/object:Driver
-  driverName: Armin
-  driveCount: 1
-  rating: 3.0
-Fahri: !ruby/object:Driver
-  driverName: Fahri
-  driveCount: 4
-  rating: 3.75
-Tono: !ruby/object:Driver
-  driverName: Tono
-  driveCount: 3
-  rating: 2.0
-Alexandra: !ruby/object:Driver
-  driverName: Alexandra
-  driveCount: 1
-  rating: 3.67
-Burhainin: !ruby/object:Driver
-  driverName: Burhainin
-  driveCount: 2
-  rating: 4.0
-Kael: !ruby/object:Driver
-  driverName: Kael
-  driveCount: 4
-  rating: 3.75
-Pakjo: !ruby/object:Driver
-  driverName: Pakjo
-  driveCount: 3
-  rating: 4.67
-Nicky: !ruby/object:Driver
-  driverName: Nicky
-  driveCount: 2
-  rating: 5.0
 Hifdzi: !ruby/object:Driver
   driverName: Hifdzi
   driveCount: 1
+  rating: 4.5
+  x: 10
+  y: 5
+Pakjo: !ruby/object:Driver
+  driverName: Pakjo
+  driveCount: 3
+  rating: 4.25
+  x: 19
+  y: 18
+Fahri: !ruby/object:Driver
+  driverName: Fahri
+  driveCount: 4
+  rating: 3.2
+  x: 20
+  y: 4
+Suparmin: !ruby/object:Driver
+  driverName: Suparmin
+  driveCount: 2
   rating: 4.0
+  x: 10
+  y: 19
+Armin: !ruby/object:Driver
+  driverName: Armin
+  driveCount: 1
+  rating: 4.5
+  x: 11
+  y: 18

@@ -10,10 +10,11 @@ class User
 	attr_accessor :rideCount
 	attr_accessor :rating
 	attr_accessor :history
+	attr_accessor :password
 	def initialize(filename, x, y)
-		if File.file?("../users/"+filename)
+		if File.file?("users/"+filename)
 			puts "User found in database! Loading files..."
-			@history = YAML.load_file("../users/"+filename)
+			@history = YAML.load_file("users/"+filename)
 			print "Input password(hidden): "
 			@password = @history.password
 			@inpt = STDIN.noecho(&:gets).chomp
@@ -28,7 +29,7 @@ class User
 		else
 			Gem.win_platform? ? (system "cls") : (system "clear")
 			print "New user detected!\nInput name: "
-			@uName = gets.chomp
+			@uName = STDIN.gets.chomp
 			print "Enter password(hidden): "
 			@password = STDIN.noecho(&:gets).chomp
 			loop do
@@ -36,7 +37,7 @@ class User
 				@confirmPass = STDIN.noecho(&:gets).chomp
 				break if @password == @confirmPass
 				Gem.win_platform? ? (system "cls") : (system "clear")
-				puts "\nWrong input! Confirm password by retyping the password"
+				puts "Wrong input! Confirm password by retyping the password"
 			end
 			Gem.win_platform? ? (system "cls") : (system "clear")
 			puts "Welcome aboard, #{@uName}. Enjoy using Go-Cli!"
@@ -49,7 +50,7 @@ class User
 		@debt = @history.debt
 		@rideCount = @history.rideCount
 		@rating = @history.rating
-		@outputFile = File.new('../users/'+@profileName+'.yml', 'w')
+		@outputFile = File.new('users/'+@profileName+'.yml', 'w')
 		@outputFile.puts YAML.dump(@history)
 	end
 	def showHistory
@@ -62,23 +63,23 @@ class User
 		else
 			while(@exit != true)
 				puts "\nDate\t\t: #{@history.rides[@iterator].date}"
-				puts "Position\t: #{@history.rides[@iterator].pos}"
-				puts "Destination\t: #{@history.rides[@iterator].dest}"
+				puts "Position\t: (#{@history.rides[@iterator].pos[0]}, #{@history.rides[@iterator].pos[1]})"
+				puts "Destination\t: (#{@history.rides[@iterator].dest[0]}, #{@history.rides[@iterator].dest[1]})"
 				puts "Start Time\t: #{@history.rides[@iterator].start}"
 				puts "Finish Time\t: #{@history.rides[@iterator].finish}"
 				puts "Fare\t\t: Rp. #{@history.rides[@iterator].fare}"
 
 				puts "\nRoute:"
 				@history.rides[@iterator].routes.each do |s|
-					puts s
+					puts "-"+s
 				end
 
 				puts "\nYour ride was with #{@history.rides[@iterator].driverName}"
-				puts "Your rating to driver: #{@history.rides[@iterator].uToD}"
-				puts "Driver rating to you: #{@history.rides[@iterator].dToU}"
+				puts "Your rating to driver: #{@history.rides[@iterator].uToD} stars"
+				puts "Driver rating to you: #{@history.rides[@iterator].dToU} stars"
 
 				puts "\nprevious(p) #{@iterator+1}/#{@history.rides.length} next(n) | exit(q)"
-				@inpt = gets.chomp
+				@inpt = STDIN.gets.chomp
 				Gem.win_platform? ? (system "cls") : (system "clear")
 				case @inpt
 				when 'p'
@@ -98,6 +99,13 @@ class User
 				end
 			end
 		end
+	end
+	def logRides(duration, pos, dest, fare, driverName, uToD, dToU, routes)
+		newHistory = History.new(@profileName, @password, @debt, @rideCount, @rating)
+		newHistory.rides = @history.rides #just go through it
+		newHistory.addRides(duration, pos, dest, fare, driverName, uToD, dToU, routes)
+		output = File.new("users/"+@profileName+'.yml', 'w')
+		output.puts YAML.dump(@history)	
 	end
 end
 

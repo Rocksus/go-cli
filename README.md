@@ -142,7 +142,7 @@ System class:
 		=================== MAIN MENU ===================
 		
 		User			: Farhan
-		Accumulated Debt: Rp. 39.0000
+		Accumulated Debt: Rp. 39.000
 
 		1. Show Map
 		2. Order Go Ride
