@@ -44,16 +44,16 @@ Main menu, for example:
 
 =================== MAIN MENU ===================
 		
-		User			: Farhan
-		Your rating     : 4.57
-		Accumulated Debt: Rp. 39.000
+User			: Farhan
+Your rating     : 4.57
+Accumulated Debt: Rp. 39.000
 
-		1. Show Map
-		2. Order Go Ride
-		3. View History
-		4. Exit
+1. Show Map
+2. Order Go Ride
+3. View History
+4. Exit
 
-		_ <-input
+_ <-input
 ```
 Adding the text art would make the main menu look way better. I also displayed the name, rating, and accumulated debt on the main menu, since those are usually displayed in the main menu.
 
