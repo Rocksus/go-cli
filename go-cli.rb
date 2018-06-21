@@ -17,9 +17,14 @@ else
 end
 
 if(inpt.length == 3) 
-	puts "Generating random map with #{inpt[0]}x#{inpt[0]} size..."
-	puts "Placing you in position x:#{inpt[1]} y:#{inpt[2]}.."
-	admin = System.new(inpt[0], inpt[1], inpt[2])
+	if(inpt[1].to_i < 1 or inpt[1].to_i > inpt[0].to_i or inpt[2].to_i < 1 or inpt[2].to_i > inpt[0].to_i)
+		puts "Invalid user position! Please try again."
+		exit
+	else
+		puts "Generating random map with #{inpt[0]}x#{inpt[0]} size..."
+		puts "Placing you in position x:#{inpt[1]} y:#{inpt[2]}.."
+		admin = System.new(inpt[0], inpt[1], inpt[2])
+	end
 elsif (inpt.length == 1)
 	puts "Valdiating #{inpt[0]}..."
 	if File.file?("maps/"+inpt[0])

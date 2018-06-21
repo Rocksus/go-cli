@@ -1,0 +1,20 @@
+--- !ruby/object:Ride
+date: '2018-06-21'
+start: '18:46:17'
+finish: '18:56:17'
+pos:
+- '2'
+- '10'
+dest:
+- '9'
+- '12'
+fare: 5400
+driverName: Armin
+uToD: 0
+dToU: 3
+routes:
+- Start at (2,10)
+- Move to (9,10)
+- Turn right
+- Move to (9,12)
+- Finish at (9,12)

@@ -1,0 +1,6 @@
+--- !ruby/object:Driver
+driverName: Suparmin
+driveCount: 2
+rating: 4.33
+x: 15
+y: 4

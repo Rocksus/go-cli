@@ -31,30 +31,13 @@ class History
 	attr_accessor :debt
 	attr_accessor :rideCount
 	attr_accessor :rating
-	attr_accessor :rides
 	attr_accessor :password
 	def initialize(uName, password, debt, rideCount, rating)
-		@rides = []
 		@profileName = uName
 		@debt = debt
 		@rideCount = rideCount
 		@rating = rating
 		@password = password
-	end
-	def addRides(duration, pos, dest, fare, driverName, uToD, dToU, routes)
-		@ntime = Time.now.to_s.split(" ")
-		@date = @ntime[0]
-		@start = @ntime[1]
-		@addTime = duration
-		@finish = (Time.now + @addTime*60).to_s.split(" ")[1]
-		@pos = pos.split(",").each { |e| e.to_i }
-		@dest = dest.split(",").each { |e| e.to_i }
-		@fare = fare
-		@driverName = driverName
-		@uToD = uToD
-		@dToU = dToU
-		@routes = routes
-		@rides.push(Ride.new(@date, @start, @finish, @pos, @dest, @fare, @driverName, @uToD, @dToU, @routes))
 	end
 end
 

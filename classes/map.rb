@@ -12,7 +12,7 @@ class Map
 	def show
 		Gem.win_platform? ? (system "cls") : (system "clear")
 		puts "Displaying map..."
-		puts "Map size: #{@width}x#{@height}\n"
+		puts "Map size: #{@width-2}x#{@height-2}\n"
 		print "\n"
 		(0...@height).each do |i|
 			(0...@width).each do |j|
@@ -42,7 +42,7 @@ class Map
 		end
 		system "pause"
 	end
-	def showRoute(from, to)
+	def showRoute(from, to, driverPos)
 		@from = from
 		@to = to
 		@coors = []
@@ -106,6 +106,8 @@ class Map
 					print "O"
 				elsif j==@from[0] and i==@from[1]
 					print "Y"
+				elsif j==driverPos[0] and i==driverPos[1]
+					print "D"
 				else
 					if(@coors.length>0)
 						@coors.each do |dx, dy| 
@@ -154,24 +156,3 @@ class Map
 		@routeList
 	end
 end
-
-
-# map = Map.new(20, 20, [5, 6], [[2,3], [6,2], [3,9], [16,3], [17,17]])
-
-# map.showRoute([8,7], [8,2])
-# map.showRoute([8,7], [16,2])
-# map.showRoute([8,7], [16,7])
-# map.showRoute([8,7], [16,16])
-# map.showRoute([8,7], [8,16])
-# map.showRoute([8,7], [4,16])
-# map.showRoute([8,7], [4,7])
-# map.showRoute([8,7], [4,2])
-
-# map.showRoute([8,2],[8,7])
-# map.showRoute([16,2],[8,7])
-# map.showRoute([16,7],[8,7])
-# map.showRoute([16,16],[8,7])
-# map.showRoute([8,16],[8,7])
-# map.showRoute([4,16],[8,7])
-# map.showRoute([4,7],[8,7])
-# map.showRoute([4,2],[8,7])

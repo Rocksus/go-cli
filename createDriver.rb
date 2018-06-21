@@ -21,13 +21,9 @@ File.open('drivers/drivernames.bin', 'rb') do |f|
 		driverName = inpt[0].to_s
 		driveCount = inpt[1].to_i
 		rating = inpt[2].to_f
-		drivers[driverName] = Driver.new(driverName, driveCount, rating)
+		output = File.new('drivers/'+driverName+'.yml', 'w')
+		output.puts YAML.dump(Driver.new(driverName, driveCount, rating))
 	end
 end
 
-drivers.each do |k, val| 
-	puts drivers[k.to_s].driveCount
-end
-
-output.puts YAML.dump(drivers)
-puts YAML.dump(drivers)
+puts "Generate drivers from drivernames.bin complete!"

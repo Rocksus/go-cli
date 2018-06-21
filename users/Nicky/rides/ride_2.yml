@@ -1,0 +1,20 @@
+--- !ruby/object:Ride
+date: '2018-06-21'
+start: '18:45:28'
+finish: '19:08:28'
+pos:
+- '20'
+- '19'
+dest:
+- '19'
+- '2'
+fare: 10800
+driverName: Pakjo
+uToD: 5
+dToU: 5
+routes:
+- Start at (20,19)
+- Move to (19,19)
+- Turn right
+- Move to (19,2)
+- Finish at (19,2)

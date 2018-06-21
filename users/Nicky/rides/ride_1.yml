@@ -1,0 +1,20 @@
+--- !ruby/object:Ride
+date: '2018-06-21'
+start: '18:32:12'
+finish: '18:54:12'
+pos:
+- '6'
+- '15'
+dest:
+- '18'
+- '19'
+fare: 9600
+driverName: Hifdzi
+uToD: 5
+dToU: 5
+routes:
+- Start at (6,15)
+- Move to (18,15)
+- Turn right
+- Move to (18,19)
+- Finish at (18,19)
