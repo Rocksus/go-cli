@@ -172,8 +172,12 @@ class System
 					puts "Ride accepted! Your driver will pick you up soon!"
 					system "pause"
 					Gem.win_platform? ? (system "cls") : (system "clear")
-					puts "Ride completed! Please rate your driver (1-5): " #ERROR HANDLING
-					driverRate = STDIN.gets.chomp.to_f
+					puts "Ride completed! Please rate your driver (1-5): "
+					loops do
+						driverRate = STDIN.gets.chomp.to_f
+						break if(driverRate.to_i>0)
+						puts "Please enter a valid rating!"
+					end
 					@closestDriver.rating = (( (@closestDriver.rating.to_i * @closestDriver.driveCount) + driverRate).to_f / (@closestDriver.driveCount+1).to_f).round(2)
 					@user.debt += @shortest * @cfg.rate
 					userRate = rand(driverRate.to_i..5)
